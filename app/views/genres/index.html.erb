@@ -1,0 +1,11 @@
+
+<ul class="genres">
+<% @genres.each do |g| %>
+	<li> 
+		<%= link_to(g.name, edit_genre_path(g)) %>
+	</li>
+<%end%>
+</ul>
+<section class="admin"><!-- this section has admin class -->
+      <%= link_to "Add New Genre", new_genre_path, class: "button" %>
+</section>

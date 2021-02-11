@@ -1,0 +1,54 @@
+<header>
+      <nav>
+        <%= link_to image_tag("logo.png"), root_path %><!-- image links back to root URL -->
+        <ul class="left"><!-- unordered list with left class -->
+          <li>
+            <%= nav_link_to "Released", movies_path %>
+          </li>
+          <li>
+            <%= nav_link_to "Upcoming", filtered_movies_path(:upcoming) %>
+          </li>
+          <li>
+            <%= nav_link_to "Recent", filtered_movies_path(:recent) %>
+          </li>
+          <li>
+            <%= nav_link_to "Hits", filtered_movies_path(:hits) %>
+          </li>
+          <li>
+            <%= nav_link_to "Flops", filtered_movies_path(:flops) %>
+          </li>
+          <li>
+            <% if current_user_admin? %>
+              <li>
+                <%= nav_link_to("Users", users_path) %>
+              </li>
+              <li>
+                <%= nav_link_to("Genres", genres_path) %>
+              </li>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="right"><!-- unordered list with right class -->
+          <% if current_user %>
+            <li>
+              <%= nav_link_to current_user.username || current_user.name, current_user %>
+            </li>
+            <li>
+              <%= link_to "Sign Out", session_path, method: :delete,
+                                      class: "button" %>
+            </li>
+            <li>
+              <%= nav_link_to "Account Settings", edit_user_path(current_user) %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Sign In", signin_path, class: "button" %>
+            </li>
+        	  <li>
+          	   <%= link_to "Sign Up", signup_path, class: "button" %>
+            </li>
+          <% end %>
+
+        </ul>
+      </nav>
+    </header>

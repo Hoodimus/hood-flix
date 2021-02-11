@@ -1,0 +1,10 @@
+<h1><%= @genre.name %> Movies </h1>
+	<% @movie_list.each do |movie| %>
+	<section class="movie">
+		<div class="summary">
+      		<h2>
+       	 		<%= link_to movie.title, movie %>
+     		</h2>
+     	</div>
+    </section>
+<% end %>

@@ -1,0 +1,20 @@
+<!-- loops through form looking for errors -->
+<% if object.errors.any? %>
+    <!-- section with CSS class errors -->
+  <section class="errors">
+    <h2><!-- header 2 -->
+      Oops! Your form could not be saved.
+    </h2>
+    <h3><!-- header 3 -->
+      Please correct the following
+      <!-- list amount of errors and pluralizes error -->
+      <%= pluralize(object.errors.size, "error") %>:
+    </h3>
+    <ul><!-- unordered lis -->
+          <!-- loops through form object and converts them to full messages -->
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li><!-- prints the resulting errors -->
+      <% end %>
+    </ul>
+  </section>
+<% end %>

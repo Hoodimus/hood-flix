@@ -1,0 +1,31 @@
+  <!-- ruby expression loops through movies -->
+<% @movies.each do |movie| %>
+  <section class="movie"><!-- this whole section has movie class -->
+    <div class="image"><!-- this division has a image class -->
+      
+    <%= link_to image_tag(movie.image_file_name), movie %>
+  </div>
+    <div class="summary"><!-- this div has summary class -->
+      <h2>
+        <%= link_to movie.title, movie %>
+      </h2>
+      <h3>
+        <!-- helper that takes input form movies_helper.rb -->
+        <%= total_gross(movie) %>
+      </h3>
+        <span class="stars"><!-- this div has stars class -->
+          <%= render "shared/stars", percent: movie.average_stars_as_percent %>
+        </span>
+      <p>  <!-- helper method shortens description, separator breaks on a space -->
+        <%= truncate(movie.description, length: 150, separator: ' ') %>
+      </p>
+    </div>
+  </section>
+  
+<% end %>
+
+<% if current_user_admin? %>
+  <section class="admin"><!-- this section has admin class -->
+      <%= link_to "Add New Movie", new_movie_path, class: "button" %>
+  </section>
+<% end %>
